@@ -1,1 +1,6 @@
 To Do List
+
+Character Count
+BST
+Save BST
+Generate Huffman Tree
