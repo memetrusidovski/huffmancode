@@ -1,8 +1,17 @@
 /*
- * CP 264 Huffman Coding
- *
- * This file contains the main program,the structure of the Huffman node
- * and user interface for running your Huffman Encoder/Decoder. 
+------------------------------------------------------------------------------------------
+File:    huffman.c
+Project: huffmancode
+Purpose: 
+==========================================================================================
+
+Program Description:
+    CP 264 Huffman Coding
+This file contains the main program,the structure of the Huffman node
+and user interface for running your Huffman Encoder/Decoder. 
+------------------------------------------------------------------------------------------
+Authors:  Memet Rusidovski, 
+-------------------------------------
  */
 
 #include <stdio.h>
@@ -10,20 +19,23 @@
 #include <string.h>
 
 // A Huffman tree node
-typedef struct {
+typedef struct
+{
     int index;
     unsigned int weight;
 } node_t;
 
-int main(int argc, char **argv) {
-    if (argc != 4) {
+int main(int argc, char **argv)
+{
+    if (argc != 4)
+    {
         fprintf(stderr,
                 "USAGE: ./huffman [encode | decode] "
                 "<input file> <output file>\n");
         return 0;
     }
-    
-    int i =0;
+
+    int i = 0;
 
     initialize();
 
@@ -40,6 +52,3 @@ int main(int argc, char **argv) {
 
     return 0;
 }
-
-
-
