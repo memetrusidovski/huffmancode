@@ -30,7 +30,7 @@ void inorder(struct Node* root);
 int isBST(struct Node* node);
 
 int main(void){
-    int keys[] = {'c','h','q','k','t'};
+    int keys[] = {'c','a', 'z', 'm', 'b', 'g','h','q','k','t'};
 
 
     size_t length = sizeof(keys) / sizeof(keys[0]); //Get number of Array elements 
@@ -76,7 +76,7 @@ void inorder(struct Node* root){
 		return;
 
 	inorder(root->left);//move left 
-	printf("%d ",root->key);//prints keys when recursion backtracks 
+	printf("%c ",root->key);//prints keys when recursion backtracks 
 	inorder(root->right);//go to right node and will print when it reaches null 
 }
 
