@@ -1,9 +1,9 @@
 # CP264 Huffman Code Group Project
 
  Data Structures:  	
- - [ ] LinkList_Freqency
-  		-Character
-  		 -Count  	   
+ - [ ] LinkList_Freqency  
+  		-Character  
+  		-Count  	   
   
  - [ ] Character_BST
 
