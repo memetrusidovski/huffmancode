@@ -18,4 +18,3 @@ Functions:
 
 Encode Txt->Freq. Count->Build BST-> Convert Txt file to binary string->Save to File
 
-
