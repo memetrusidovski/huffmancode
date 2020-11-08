@@ -9,22 +9,24 @@ typedef struct leaf
 	struct leaf *left, *right;
 }leaf;
 
+//Sorted List Node
 typedef struct node{
-    int data;
+    int priority;
     leaf* leaf_data;
     struct node *ptr;
-} node;
+} node_sort;
 
 //----- LINKED LIST -----
 typedef struct LinkedList_s {
-   node* head;
+   node_sort* head;
    //node* tail;
 } LinkedList_s;
 
-void buildTree();
 void insertLeaf(LinkedList_s *list, leaf* l);
-struct LinkedList_s createSortedList();
+LinkedList_s* createSortedList();
 leaf* createLeaf(char ch, int freq);
-node* dequeue(LinkedList_s *list);
+node_sort* dequeue(LinkedList_s *list);
+node_sort* createStackNode(leaf* l);
+void insert(LinkedList_s* linked, node_sort* l);
 
 #endif

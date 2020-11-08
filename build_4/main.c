@@ -12,21 +12,25 @@ int main(void){
 
 
     //Create a Sorted List/Priority Queue
-    LinkedList_s list = createSortedList();
-    leaf* l = malloc(sizeof(leaf));
+    LinkedList_s* list = createSortedList();
+    node_sort* l;
+
+    //leaf* l;
     //Current node for traversal 
     Node_t* current = x->head;
     
     
     while(current != NULL){
 
-        l = createLeaf(current->data, current->count);
-        insertLeaf(&list, l);
+        l = createStackNode( createLeaf(current->data, current->count));
+        
+        //printf("%c\n", current->data);
+        insert(list, l);
 
         current= current->next;
     }
 
 
     for(int i = 0; i < 5; i++)
-        printf("%c~~\n", dequeue(&list)->leaf_data->ch);
+        printf("%c~~\n", dequeue(list)->leaf_data->ch);
 }

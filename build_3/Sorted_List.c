@@ -2,17 +2,16 @@
 #include <stdlib.h>
 
 // A Tree node
-struct Node
+typedef struct leaf
 {
 	char ch;
 	int freq;
-	struct Node *left, *right;
-};
-typedef struct Node leaf;
+	struct leaf *left, *right;
+}leaf;
 
 typedef struct node{
     int data;
-    leaf leaf_data;
+    leaf* leaf_data;
     struct node *ptr;
 } node;
 
@@ -30,7 +29,8 @@ leaf* createLeaf(char ch, int freq)
 
 	node->ch = ch;
 	node->freq = freq;
-    
+    node->left = NULL;
+    node->right= NULL;
 	return node;
 }
 
@@ -42,10 +42,10 @@ LinkedList_s createSortedList()
 }
 
 node* createStackNode(leaf* l){
-    node* temp = (node*)malloc(sizeof(node));
+    node* temp = malloc(sizeof(node));
     temp->data = l->freq;
-    temp->ptr = NULL;
-    temp->leaf_data = *l;
+
+    temp->leaf_data = l;
 
     return temp;
 }
@@ -63,14 +63,12 @@ void insert(LinkedList_s* head, node* l) {
     }
     else{
     node *prev = (node*)malloc(sizeof(node));
-    node *next = (node*)malloc(sizeof(node));
+    node *next = head->head;
     int i = 0;
 
-    prev = NULL;
-    next = head->head;
     while(next != NULL && i == 0){
        
-        if (next->data >= l->data){
+        if (next->data <= l->data){
             prev->ptr = l;
             l->ptr = next;
             i = 1;
@@ -83,7 +81,7 @@ void insert(LinkedList_s* head, node* l) {
         l->ptr = next;
     }
    
-    
+    free(prev);
     }
 
 }
@@ -99,6 +97,7 @@ node* dequeue(LinkedList_s *list){
 
 void insertLeaf(LinkedList_s *list, leaf* l){
     node* n = createStackNode(l);
+
     insert(list, n);
 }
 
@@ -121,11 +120,11 @@ void buildTreeTest(){
     insert(&list, n4);
     insert(&list, n5);
 
-    printf("%d\n", dequeue(&list)->leaf_data.freq);
-    printf("%d\n", dequeue(&list)->leaf_data.freq);
-    printf("%c\n", dequeue(&list)->leaf_data.ch);
-    printf("%c\n", dequeue(&list)->leaf_data.ch);
-    printf("%d\n", dequeue(&list)->leaf_data.freq);
+    printf("%d\n", dequeue(&list)->leaf_data->freq);
+    printf("%d\n", dequeue(&list)->leaf_data->freq);
+    printf("%c\n", dequeue(&list)->leaf_data->ch);
+    printf("%c\n", dequeue(&list)->leaf_data->ch);
+    printf("%d\n", dequeue(&list)->leaf_data->freq);
 }
 /*
 int main(){
