@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <string.h>
 
 #include "Sorted_List.h"
 #include "linked_counter.h"
@@ -10,7 +11,7 @@
 
 void print2D( leaf *root);
 void print2DUtil(leaf *root, int space);
-bool printCode(leaf* root, char key);
+bool printCode(leaf* root, char key, char s[]);
 
 int main(void){
     //Make a Frequency List
@@ -54,30 +55,55 @@ int main(void){
     leaf* BST_of_Char = dequeue(list)->leaf_data;
     //print2D( BST_of_Char );
     
-    current = x->head;
-    while (current != NULL){
-        printCode(BST_of_Char, current->data);
-        printf(" -> %c\n", current->data);
+    //for testing the code gen. function
+    /*current = x->head;
+    char s[20];
+     while (current != NULL){
+        printCode(BST_of_Char, current->data, s);
+        printf("%s -> %c\n", s, current->data);
+        memset(s,0,20);
         current = current->next;
+    }*/
+
+
+    FILE *fv;
+    char lineOfText[100];
+    char s[20];
+
+    //Check if the file exists and if not terminate program
+    if((fv = fopen("short.txt", "r")) == NULL){
+        printf("Error! File could not be openned");
+        exit(1);
     }
+
+    //Scans a line in the file
+    fscanf(fv, "%[^\n]%*c",lineOfText);
+    for(int i = 0; i < 40; i++){
+        printCode(BST_of_Char, lineOfText[i], s);
+        printf("%s\n", s);
+        memset(s,0,20);
+    }
+   
 
 
 
 }
 
-bool printCode(leaf* root, char key){
+bool printCode(leaf* root, char key, char s[]){
     if (root == NULL)
     {
         return NULL;
     }
 
-    if(printCode(root->right, key) == true){
-        printf("1");
+    if(printCode(root->right, key, s) == true){
+        //printf("1");
+        strcat(s, "1");
         return true;
 
     }
-    if(printCode(root->left, key) == true){
-        printf("0");
+    if(printCode(root->left, key, s) == true){
+        //printf("0");
+        strcat(s, "0");
         return true;
     }
 
