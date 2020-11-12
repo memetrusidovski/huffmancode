@@ -144,7 +144,7 @@ LinkedList_t* makeList(){
    fclose(fv);
 
 
-   printList(t);
+   //printList(t);
    //printFile(t);
 
    return t;

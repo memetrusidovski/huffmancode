@@ -1,29 +1,16 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
 #include "Sorted_List.h"
 #include "linked_counter.h"
 
 #define COUNT 5
 
-void inorder( leaf* root);
+
 void print2D( leaf *root);
 void print2DUtil(leaf *root, int space);
-
-//sasfasfa
-int isValidBST(leaf* node, leaf* minNode, leaf* maxNode) {
-    if(!node) return 1;//Check for a null and break recursion 
-    if((minNode && node->freq <= minNode->freq) || //check if the key is less that the previous and not Null 
-        (maxNode && node->freq >= maxNode->freq)) //check if the key is greater than the previous 
-        return 0;
-    return isValidBST(node->left, minNode, node) && isValidBST(node->right, node, maxNode);
-}
-
-int isBST(leaf* node){
-    return isValidBST(node,NULL,NULL);//start helper function 
-}
-//dfsdfsd
-
+bool printCode(leaf* root, char key);
 
 int main(void){
     //Make a Frequency List
@@ -65,28 +52,50 @@ int main(void){
     }
 
     leaf* BST_of_Char = dequeue(list)->leaf_data;
-    print2D( BST_of_Char );
+    //print2D( BST_of_Char );
     
-    //inorder(BST_of_Char);
+    current = x->head;
+    while (current != NULL){
+        printCode(BST_of_Char, current->data);
+        printf(" -> %c\n", current->data);
+        current = current->next;
+    }
 
 
-    if(isBST(BST_of_Char))
-    printf("A valid tree\n");
-    else 
-    printf("Not a valid tree\n");
+
+}
+
+bool printCode(leaf* root, char key){
+    if (root == NULL)
+    {
+        return NULL;
+    }
+
+    if(printCode(root->right, key) == true){
+        printf("1");
+        return true;
+
+    }
+    if(printCode(root->left, key) == true){
+        printf("0");
+        return true;
+    }
+
+    if(root->ch == key){
+        return true; 
+    }
+    
+    else
+    {
+        return false;
+    }
+    
+
+
+    
 }
 
 
-//print out the BST
-void inorder( leaf* root){
-    if(root==NULL)//reach a deadend or null space end recursion 
-		return;
-
-	inorder(root->left);//move left
-    if(root->ch == '$')
-	printf(" %c\n",root->ch);//prints keys when recursion backtracks 
-	inorder(root->right);//go to right node and will print when it reaches null 
-}
 
 void print2DUtil(leaf *root, int space) 
 { 
