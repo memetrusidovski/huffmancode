@@ -5,7 +5,7 @@
   		-Character  
   		-Count  	   
   
- - [ ] Character_BST
+ - [x] Character_BST
 
 Functions:
  - [ ] TXT_To_FreqencyList 

@@ -18,7 +18,8 @@ typedef struct node{
 
 //----- LINKED LIST -----
 typedef struct LinkedList_s {
-   node_sort* head;
+    int height;
+    node_sort* head;
    //node* tail;
 } LinkedList_s;
 

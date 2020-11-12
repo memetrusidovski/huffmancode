@@ -19,6 +19,7 @@ leaf* createLeaf(char ch, int freq)
 LinkedList_s* createSortedList()
 {
    LinkedList_s* list = malloc(sizeof(LinkedList_s));
+   list->height=0;
    return list;
 }
 
@@ -41,37 +42,36 @@ void insert(LinkedList_s* linked, node_sort* l){
     }
     else{
 
-    node_sort *prev = malloc(sizeof(node_sort));
-    node_sort *next = linked->head;
+    node_sort *prev = linked->head;// = malloc(sizeof(node_sort));
+    node_sort *next = linked->head->ptr;
     int i = 0;
 
     while(next != NULL && i == 0){
        
-        if (next->priority <= l->priority){
-            prev->ptr = l;
-            l->ptr = next;
+        if (l->priority <= next->priority){
+            
             i = 1;
-        }
+        }else{
         prev = next;
-        next = next->ptr;
-    }
-    if (next == NULL){
-        prev->ptr = l;
-        l->ptr = next;
-    }
-   
-    free(prev);
+        next = next->ptr;}
     }
     
+        prev->ptr = l;
+        l->ptr = next;
+    
+    }
+
+    linked->height++;
+    
+
 }
 
 
-
 node_sort* dequeue(LinkedList_s *list){
-    node_sort* temp = (node_sort*)malloc(sizeof(node_sort));
-    temp = list->head;
+    node_sort* temp = list->head;
     list->head = list->head->ptr;
 
+    list->height--;
     return temp;
 }
 
