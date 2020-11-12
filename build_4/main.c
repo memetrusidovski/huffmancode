@@ -47,7 +47,7 @@ int main(void){
         temp->right = tempLeaf1;
         temp->left = tempLeaf2;
 
-        l = createStackNode(temp );
+        l = createStackNode( temp );
         insert(list, l);
     }
 
