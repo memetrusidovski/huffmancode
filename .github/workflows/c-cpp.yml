@@ -13,11 +13,9 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: configure
-      run: ./configure
+    - name: cd 
+      run: cd build_4
     - name: make
-      run: make
+      run: gcc linked_counter.c Sorted_List.c main.c -o main 
     - name: make check
-      run: make check
-    - name: make distcheck
-      run: make distcheck
+      run: ./main
