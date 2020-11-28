@@ -7,7 +7,7 @@ Purpose:
 
 Program Description:
     CP 264 Huffman Coding
-This file contains the main program,the structure of the Huffman node
+This file contains the main program 
 and user interface for running your Huffman Encoder/Decoder. 
 ------------------------------------------------------------------------------------------
 Authors:  Memet Rusidovski, 
@@ -18,8 +18,25 @@ Authors:  Memet Rusidovski,
 #include <stdlib.h>
 #include <string.h>
 
+#include "BST.h"
 
+void encode(char *inputFile, char *outputFile){
+    encodeFile("medium.txt");
+}
 
+void decode(char *inputFile, char *outputFile){
+    decodeFile("savefile.txt");
+}
+
+int main(void){
+    
+    //encode("hello", "bye");
+
+    decode("hello", "bye");
+
+}
+
+/*
 int main(int argc, char **argv)
 {
     if (argc != 4)
@@ -47,3 +64,4 @@ int main(int argc, char **argv)
 
     return 0;
 }
+*/

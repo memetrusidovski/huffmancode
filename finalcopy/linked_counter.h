@@ -17,4 +17,5 @@ struct LinkedList {
 typedef struct LinkedList LinkedList_t;
 
 LinkedList_t* makeList(char *fileName);
+LinkedList_t* makeDecodeList(char *fileName);
 #endif

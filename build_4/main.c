@@ -15,7 +15,7 @@ bool printCode(leaf* root, char key, char s[]);
 
 int main(void){
     //Make a Frequency List
-    LinkedList_t* x = makeList();
+    LinkedList_t* x = makeList("short.txt");
 
 
     //Create a Sorted List/Priority Queue
@@ -27,7 +27,6 @@ int main(void){
     
     //Put all characters from frequency list into priority queue
     while(current != NULL){
-
         l = createStackNode(createLeaf(current->data, current->count));
         
         //printf("%d\n", list->height);

@@ -121,29 +121,94 @@ LinkedList_t* makeList(char *fileName){
    LinkedList_t* t = llCreate();
 
    FILE *fv;
-   char s[100];
 
     //Check if the file exists and if not terminate program
     if((fv = fopen(fileName, "r")) == NULL){
         printf("Error! File could not be openned");
         exit(1);
     }
+   char *s = malloc(sizeof(fv)*2);
 
     //Scans a line in the file
-    fscanf(fv,"%[^\n]%*c",s);
+   fscanf(fv,"%[^\0]%*c",s);
+
       
-   printf("\033[34m"); //Set the text to the color red
+   printf("\033[36m"); //Set the text to the color blue
       printf("%s\n", s);
    printf("\x1B[0m"); //Resets the text to default color
    
 
-   for(int i = 0; i < 40; i++){
+   for(int i = 0; s[i] != '\0'; i++){
       append(t, s[i]);
    }
 
    fclose(fv);
 
 
+   printList(t);
+   //printFile(t);
+
+   return t;
+}
+
+LinkedList_t* makeDecodeList(char *fileName){
+   LinkedList_t* t = llCreate();
+
+   FILE *fv;
+   //Check if the file exists and if not terminate program
+   if((fv = fopen("savefile.txt", "r")) == NULL){
+      printf("Error! File could not be openned");
+      exit(1);
+    }
+   char *s = malloc(sizeof(fv)*2);
+
+    //Scans a line in the file
+   fscanf(fv,"%[^\n]%*c",s);
+
+      
+   printf("\033[32m"); //Set the text to the color
+      printf("%s\n", s);
+   printf("\x1B[0m"); //Resets the text to default color
+   
+
+   char *string,*found;
+
+   string = strdup(s);
+
+   while( (found = strsep(&string,":")) != NULL ){
+      int starter = 1;
+      //printf("->'%c'\n",found[0]);
+      
+      if (found [0] == (char)NULL){
+         append(t, ':');
+         found = strsep(&string,":");
+         t->tail->count = (int) strtol(found,NULL, 0);
+      }else{
+      if (found[0] == '\\'){
+         append(t, '\n');
+         starter = 2;
+      }
+      else{
+
+         append(t, (char) found[0]);
+      }
+      char *tempString = (char*) malloc(sizeof(found));
+      for(int i = starter; i <= strlen(found); i++){
+            //printf("%c", found[i]);
+            strncat(tempString, &found[i],1);
+         }
+         //printf(" %s\n", tempString);
+         
+         t->tail->count = (int) strtol(tempString,NULL, 0);
+      }
+
+
+   }
+
+   
+   fclose(fv);
+
+   //Print test functions
    //printList(t);
    //printFile(t);
 
