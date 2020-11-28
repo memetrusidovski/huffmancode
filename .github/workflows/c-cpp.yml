@@ -1,0 +1,21 @@
+name: C/C++ CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: cd 
+      run: cd build_4
+    - name: make
+      run: gcc linked_counter.c Sorted_List.c main.c -o main 
+    - name: make check
+      run: ./main
